@@ -33,7 +33,7 @@ unvt-pi-gen:
 	--mount type=bind,source=$(CURDIR)/stage100,target=/app/pi-gen/stage100 \
 	--mount type=bind,source=$(CURDIR)/stage101,target=/app/pi-gen/stage101 \
 	--net=unvt-pi-gen \
-	--env-file ./.env \
+	--env-file $(CURDIR)/.env \
 	-e APT_PROXY=http://172.17.0.1:3142 \
 	-e IMG_NAME=unvt-pi \
 	-e WORK_DIR=/tmp/work \
