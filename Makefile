@@ -30,7 +30,7 @@ unvt-pi-gen:
 	-v /dev:/dev \
 	-v /lib/modules:/lib/modules \
 	--mount type=bind,source=$(CURDIR)/tmp,target=/tmp \
-	--mount type=bind,source=$(CURDIR)/stage99,target=/app/pi-gen/stage99 \
+	--mount type=bind,source=$(CURDIR)/stage100,target=/app/pi-gen/stage100 \
 	--net=unvt-pi-gen \
 	--env-file ./.env \
 	-e APT_PROXY=http://172.17.0.1:3142 \
@@ -39,10 +39,7 @@ unvt-pi-gen:
 	-e DEPLOY_DIR=/tmp/deploy \
 	-e CONTINUE=1 \
 	-e DEBIAN_FRONTEND=noninteractive \
+	-e STAGE_LIST="stage0 stage1 stage2 stage100"
 	yuiseki/unvt-pi-gen \
-		bash -c "\
-			touch ./stage3/SKIP ./stage4/SKIP ./stage5/SKIP && \
-			touch ./stage4/SKIP_IMAGES ./stage5/SKIP_IMAGES && \
-			./build.sh \
-		"
+		./build.sh
 	docker compose down
