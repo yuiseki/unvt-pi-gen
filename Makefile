@@ -30,11 +30,13 @@ unvt-pi-gen:
 	-v /dev:/dev \
 	-v /lib/modules:/lib/modules \
 	--mount type=bind,source=$(CURDIR)/tmp,target=/tmp \
+	--mount type=bind,source=$(CURDIR)/stage99,target=/app/pi-gen/stage99 \
 	--net=unvt-pi-gen \
 	--env-file ./.env \
 	-e APT_PROXY=http://172.17.0.1:3142 \
 	-e IMG_NAME=unvt-pi \
 	-e DEPLOY_DIR=/tmp \
+	-e CONTINUE=1 \
 	yuiseki/unvt-pi-gen \
 		bash -c "\
 			touch ./stage3/SKIP ./stage4/SKIP ./stage5/SKIP && \

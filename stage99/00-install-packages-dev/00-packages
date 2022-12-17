@@ -1,0 +1,11 @@
+build-essential
+autoconf
+automake
+cmake
+gcc
+g++
+libtool
+sqlite3
+libsqlite3-dev
+zlib1g-dev
+raspberrypi-kernel-headers

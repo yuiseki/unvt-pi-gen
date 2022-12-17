@@ -1,0 +1,10 @@
+gdal-bin
+osmosis
+osmium-tool
+osm2pgsql
+postgresql-client
+pdal
+gpsd
+gpsd-clients
+gpsd-tools
+
