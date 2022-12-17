@@ -35,8 +35,10 @@ unvt-pi-gen:
 	--env-file ./.env \
 	-e APT_PROXY=http://172.17.0.1:3142 \
 	-e IMG_NAME=unvt-pi \
-	-e DEPLOY_DIR=/tmp \
+	-e WORK_DIR=/tmp/work \
+	-e DEPLOY_DIR=/tmp/deploy \
 	-e CONTINUE=1 \
+	-e DEBIAN_FRONTEND=noninteractive \
 	yuiseki/unvt-pi-gen \
 		bash -c "\
 			touch ./stage3/SKIP ./stage4/SKIP ./stage5/SKIP && \
