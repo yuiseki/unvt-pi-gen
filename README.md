@@ -1,19 +1,14 @@
 # unvt-pi-gen
 
-## About
+## Summary
 
-### What
-
-- Dockerfile and Makefile for building a customized Raspberry Pi OS image
-
-### Why
-
-- To quickly deploy a Raspberry Pi configured for a specific purpose
-
-### How
-
-- Build a customized Raspberry Pi OS image using `pi-gen`
-  - https://github.com/RPi-Distro/pi-gen
+- What
+  - Dockerfile and Makefile for building a customized Raspberry Pi OS image
+- Why
+  - To quickly deploy a Raspberry Pi configured for a specific purpose
+- How
+  - Build a customized Raspberry Pi OS image using `pi-gen`
+    - https://github.com/RPi-Distro/pi-gen
 
 ## Requirements
 
