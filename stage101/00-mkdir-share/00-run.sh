@@ -1,4 +1,7 @@
 #!/bin/bash -e
 
-mkdir -p "/home/${FIRST_USER_NAME}/share"
-echo "Hello!" > "/home/${FIRST_USER_NAME}/share/index.html"
+on_chroot << EOF
+	mkdir -p "/home/share"
+	echo "Hello!" > "/home/share/index.html"
+	chmod 777 -R /home/share
+EOF
