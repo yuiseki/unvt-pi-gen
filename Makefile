@@ -42,5 +42,5 @@ unvt-pi-gen:
 	-e DEBIAN_FRONTEND=noninteractive \
 	-e STAGE_LIST="stage0 stage1 stage2 stage100 stage101" \
 	yuiseki/unvt-pi-gen \
-		./build.sh
+		bash -c "touch ./stage2/SKIP_IMAGES && ./build.sh"
 	docker compose down
