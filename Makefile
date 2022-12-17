@@ -25,15 +25,20 @@ unvt-pi-gen:
 	docker run \
 	-i \
 	--rm \
+	--privileged \
+	--cap-add=ALL \
+	-v /dev:/dev \
+	-v /lib/modules:/lib/modules \
 	--mount type=bind,source=$(CURDIR)/tmp,target=/tmp \
 	--net=unvt-pi-gen \
 	--env-file ./.env \
 	-e APT_PROXY=http://172.17.0.1:3142 \
 	-e IMG_NAME=unvt-pi \
 	-e DEPLOY_DIR=/tmp \
-	--privileged \
 	yuiseki/unvt-pi-gen \
-		touch ./stage3/SKIP ./stage4/SKIP ./stage5/SKIP && \
-		touch ./stage4/SKIP_IMAGES ./stage5/SKIP_IMAGES && \
-		./build.sh
+		bash -c "\
+			touch ./stage3/SKIP ./stage4/SKIP ./stage5/SKIP && \
+			touch ./stage4/SKIP_IMAGES ./stage5/SKIP_IMAGES && \
+			./build.sh \
+		"
 	docker compose down
