@@ -31,6 +31,7 @@ unvt-pi-gen:
 	-v /lib/modules:/lib/modules \
 	--mount type=bind,source=$(CURDIR)/tmp,target=/tmp \
 	--mount type=bind,source=$(CURDIR)/stage100,target=/app/pi-gen/stage100 \
+	--mount type=bind,source=$(CURDIR)/stage101,target=/app/pi-gen/stage101 \
 	--net=unvt-pi-gen \
 	--env-file ./.env \
 	-e APT_PROXY=http://172.17.0.1:3142 \
