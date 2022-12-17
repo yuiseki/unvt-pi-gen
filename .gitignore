@@ -1,3 +1,6 @@
 .env
-!/tmp/.gitkeep
 /tmp
+!/tmp/.gitkeep
+/apt-cacher-ng
+!/apt-cacher-ng/.gitkeep
+
