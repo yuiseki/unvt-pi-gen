@@ -10,10 +10,11 @@
   - Build a customized Raspberry Pi OS image using `pi-gen`
     - https://github.com/RPi-Distro/pi-gen
 
-## Requirements
+## Dependencies
 
 - Raspberry Pi 4 Model B
-  - Default Raspbian (32-bit)
+  - Raspberry Pi OS Lite (32-bit)
+- GNU Make
 
 ```bash
 sudo apt install make
