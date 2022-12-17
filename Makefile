@@ -40,7 +40,7 @@ unvt-pi-gen:
 	-e DEPLOY_DIR=/tmp/deploy \
 	-e CONTINUE=1 \
 	-e DEBIAN_FRONTEND=noninteractive \
-	-e STAGE_LIST="stage0 stage1 stage2 stage100" \
+	-e STAGE_LIST="stage0 stage1 stage2 stage100 stage101" \
 	yuiseki/unvt-pi-gen \
 		./build.sh
 	docker compose down
