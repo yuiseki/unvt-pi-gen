@@ -12,6 +12,7 @@
 
 ## Dependencies
 
+MUST:
 - Raspberry Pi 4 Model B
   - Raspberry Pi OS Lite (32-bit)
 - GNU Make
@@ -19,6 +20,9 @@
 ```bash
 sudo apt install make
 ```
+
+SHOULD:
+- Docker
 
 ## Usage
 
