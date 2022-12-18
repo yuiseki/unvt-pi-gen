@@ -5,7 +5,6 @@ cmake
 gcc
 g++
 libtool
-clang
 xz-utils
 sqlite3
 libsqlite3-dev
