@@ -6,7 +6,6 @@ gcc
 g++
 libtool
 clang
-quilt
 xz-utils
 sqlite3
 libsqlite3-dev

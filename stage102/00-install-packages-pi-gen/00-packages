@@ -1,6 +1,7 @@
 parted
 qemu-user-static
 qemu-utils
+quilt
 debootstrap
 zerofree
 dosfstools
