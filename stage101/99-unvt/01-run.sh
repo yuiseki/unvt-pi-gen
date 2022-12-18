@@ -1,12 +1,13 @@
-mkdir -p /home/${FIRST_USER_NAME}/src
-cd /home/${FIRST_USER_NAME}/src
+#!/bin/bash -e
 
-if [ ! -d ~/src/charites ]; then
+mkdir -p ${ROOTFS_DIR}/home/${FIRST_USER_NAME}/src
+
+if [ ! -d ${ROOTFS_DIR}/home/${FIRST_USER_NAME}/src/charites ]; then
+  cd ${ROOTFS_DIR}/home/${FIRST_USER_NAME}/src
   git clone --depth 1 https://github.com/unvt/charites.git
 fi
 
-if [ ! -d ~/src/vector-tile-builder ]; then
+if [ ! -d ${ROOTFS_DIR}/home/${FIRST_USER_NAME}/src/vector-tile-builder ]; then
+  cd ${ROOTFS_DIR}/home/${FIRST_USER_NAME}/src
   git clone --depth 1 https://github.com/yuiseki/vector-tile-builder.git
 fi
-
-cd ~
