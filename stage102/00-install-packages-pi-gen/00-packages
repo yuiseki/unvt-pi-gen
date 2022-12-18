@@ -1,0 +1,10 @@
+parted
+qemu-user-static
+qemu-utils
+debootstrap
+zerofree
+dosfstools
+libarchive-tools
+libcap2-bin
+kpartx
+kmod

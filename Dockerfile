@@ -22,7 +22,6 @@ RUN apt-get -y install \
   rsync \
   quilt \
   zip \
-  bc \
   xz-utils \
   gpg \
   pigz

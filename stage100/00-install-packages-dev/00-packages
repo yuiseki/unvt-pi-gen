@@ -5,6 +5,9 @@ cmake
 gcc
 g++
 libtool
+clang
+quilt
+zx-utils
 sqlite3
 libsqlite3-dev
 zlib1g-dev
