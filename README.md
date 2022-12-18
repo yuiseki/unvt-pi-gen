@@ -29,14 +29,39 @@ sudo apt install make
 
 ## Usage
 
+### Clone repository
+
 ```bash
 git clone --depth 1 https://github.com/yuiseki/unvt-pi-gen.git
 cd unvt-pi-gen
+```
+
+### Initialize `.env`
+
+```bash
 cp .env.example .env
 vim .env
+```
+
+### Setup docker (if necessary)
+
+```bash
 make docker-setup
-make docker-build
-make unvt-pi-gen
+```
+
+### Build Raspbery Pi OS
+
+```bash
+make
+```
+
+### Write to microSD Card
+
+```bash
+df -h
+sudo umount /dev/sda
+df -h
+sudo dd if=tmp/work/export-image/YYYY-mm-dd-unvt-pi-custom.img of=/dev/sda bs=4M conv=fsync status=progress
 ```
 
 ## Stage Anatomy
