@@ -10,6 +10,9 @@ clean:
 	sudo rm -rf $(CURDIR)/tmp/deploy/*
 	sudo rm -rf $(CURDIR)/tmp/work/stage10*
 
+clean-all:
+	sudo rm -rf $(CURDIR)/tmp/work/*
+
 .PHONY: docker-setup
 docker-setup:
 	curl -fsSL https://get.docker.com -o $(CURDIR)/tmp/get-docker.sh
