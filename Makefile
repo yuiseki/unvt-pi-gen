@@ -39,7 +39,7 @@ unvt-pi-gen:
 	--mount type=bind,source=$(CURDIR)/stage102,target=/app/pi-gen/stage102 \
 	--net=unvt-pi-gen \
 	--env-file $(CURDIR)/.env \
-	-e APT_PROXY=http://apt-cacher-ng:3142 \
+	-e APT_PROXY=http://172.17.0.1:3142 \
 	-e IMG_NAME=unvt-pi \
 	-e WORK_DIR=/tmp/work \
 	-e DEPLOY_DIR=/tmp/deploy \
