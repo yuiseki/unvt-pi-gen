@@ -25,11 +25,12 @@ sudo apt install make
 ### SHOULD:
 
 - Docker
+- vim
 
 ## Usage
 
 ```bash
-git clone git@github.com:yuiseki/unvt-pi-gen.git
+git clone --depth 1 https://github.com/yuiseki/unvt-pi-gen.git
 cd unvt-pi-gen
 cp .env.example .env
 vim .env

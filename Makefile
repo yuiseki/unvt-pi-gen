@@ -6,6 +6,10 @@ targets = \
 
 all: $(targets)
 
+clean:
+	sudo rm -rf $(CURDIR)/tmp/deploy/*
+	sudo rm -rf $(CURDIR)/tmp/work/stage10*
+
 .PHONY: docker-setup
 docker-setup:
 	curl -fsSL https://get.docker.com -o $(CURDIR)/tmp/get-docker.sh
@@ -32,15 +36,16 @@ unvt-pi-gen:
 	--mount type=bind,source=$(CURDIR)/tmp,target=/tmp \
 	--mount type=bind,source=$(CURDIR)/stage100,target=/app/pi-gen/stage100 \
 	--mount type=bind,source=$(CURDIR)/stage101,target=/app/pi-gen/stage101 \
+	--mount type=bind,source=$(CURDIR)/stage102,target=/app/pi-gen/stage102 \
 	--net=unvt-pi-gen \
 	--env-file $(CURDIR)/.env \
-	-e APT_PROXY=http://172.17.0.1:3142 \
+	-e APT_PROXY=http://unvt-pi-gen:3142 \
 	-e IMG_NAME=unvt-pi \
 	-e WORK_DIR=/tmp/work \
 	-e DEPLOY_DIR=/tmp/deploy \
 	-e CONTINUE=1 \
 	-e DEBIAN_FRONTEND=noninteractive \
-	-e STAGE_LIST="stage0 stage1 stage2 stage100 stage101" \
+	-e STAGE_LIST="stage0 stage1 stage2 stage100 stage101 stage102" \
 	yuiseki/unvt-pi-gen \
 		bash -c "touch ./stage2/SKIP_IMAGES && ./build.sh"
 	docker compose down
