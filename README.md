@@ -10,13 +10,14 @@
   - Build a customized Raspberry Pi OS image using `pi-gen`
     - https://github.com/RPi-Distro/pi-gen
 
-## Dependencies
+## Requirements
 
 ### MUST:
 
 - Raspberry Pi 4 Model B
   - Raspberry Pi OS Lite (32-bit)
 - GNU Make
+- Docker
 
 ```bash
 sudo apt install make
@@ -24,38 +25,37 @@ sudo apt install make
 
 ### SHOULD:
 
-- Docker
-- vim
+- vim (or any text editor)
 
 ## Usage
 
-### Clone repository
+### 1. Clone repository
 
 ```bash
 git clone --depth 1 https://github.com/yuiseki/unvt-pi-gen.git
 cd unvt-pi-gen
 ```
 
-### Initialize `.env`
+### 2. Initialize `.env`
 
 ```bash
 cp .env.example .env
 vim .env
 ```
 
-### Setup docker (if necessary)
+### 3. Setup docker (if necessary)
 
 ```bash
 make docker-setup
 ```
 
-### Build Raspbery Pi OS
+### 4. Build Raspbery Pi OS
 
 ```bash
 make
 ```
 
-### Write to microSD Card
+### 5. Write to microSD Card
 
 ```bash
 df -h
