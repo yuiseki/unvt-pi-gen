@@ -52,7 +52,7 @@ make unvt-pi-gen
 
 ### `unvt-pi-gen` Stage Overview
 
-  - **stage100** - Essential step. Install must essential dev deps packages, setup the Docker and `unvt-pi-gen` itself.
-    This means you can take the next step as many times as you like by trial and error. 
-  - **stage101** - Customizing step. Install GIS related packages, Node.js and Setup Nginx.
+  - **stage100** - Essential stage. Install must essential dev deps packages, setup the Docker and `unvt-pi-gen` itself.
+    This means you can take the next stage as many times as you like by trial and error. 
+  - **stage101** - Customizing stage. Install GIS related packages, Node.js and Setup Nginx.
   - **stage999** - **Not used.**
