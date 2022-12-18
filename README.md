@@ -59,9 +59,10 @@ make
 
 ```bash
 df -h
-sudo umount /dev/sda
+sudo umount /dev/sda1
+sudo umount /dev/sda2
 df -h
-sudo dd if=tmp/work/export-image/YYYY-mm-dd-unvt-pi-custom.img of=/dev/sda bs=4M conv=fsync status=progress
+sudo dd if=tmp/deploy/YYYY-mm-dd-IMG_NAME-custom.img of=/dev/sda bs=4M conv=fsync status=progress
 ```
 
 ## Stage Anatomy
