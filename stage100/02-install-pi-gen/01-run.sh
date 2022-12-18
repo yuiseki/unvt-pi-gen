@@ -11,3 +11,7 @@ if [ ! -d ${ROOTFS_DIR}/home/${FIRST_USER_NAME}/src/unvt-pi-gen ]; then
   cd ${ROOTFS_DIR}/home/${FIRST_USER_NAME}/src
   git clone --depth 1 https://github.com/yuiseki/unvt-pi-gen.git
 fi
+
+#on_chroot << EOF
+#  cd /home/${FIRST_USER_NAME}/src/unvt-pi-gen && docker build . -t yuiseki/unvt-pi-gen:latest
+#EOF

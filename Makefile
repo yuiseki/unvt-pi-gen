@@ -24,6 +24,8 @@ docker-build:
 	docker image inspect sameersbn/apt-cacher-ng:latest > /dev/null || docker build -t sameersbn/apt-cacher-ng:latest github.com/sameersbn/docker-apt-cacher-ng
 	docker image inspect yuiseki/unvt-pi-gen:latest > /dev/null || docker build . -t yuiseki/unvt-pi-gen:latest
 
+# For skip...
+# touch ./stage0/SKIP ./stage1/SKIP ./stage2/SKIP &&
 .PHONY: unvt-pi-gen
 unvt-pi-gen:
 	docker compose up -d
@@ -40,12 +42,14 @@ unvt-pi-gen:
 	--net=unvt-pi-gen \
 	--env-file $(CURDIR)/.env \
 	-e APT_PROXY=http://172.17.0.1:3142 \
-	-e IMG_NAME=unvt-pi \
 	-e WORK_DIR=/tmp/work \
 	-e DEPLOY_DIR=/tmp/deploy \
 	-e CONTINUE=1 \
 	-e DEBIAN_FRONTEND=noninteractive \
 	-e STAGE_LIST="stage0 stage1 stage2 stage100 stage101" \
 	yuiseki/unvt-pi-gen \
-		bash -c "touch ./stage2/SKIP_IMAGES && ./build.sh"
+		bash -c "\
+			touch ./stage2/SKIP_IMAGES &&\
+		 ./build.sh\
+		 "
 	docker compose down
