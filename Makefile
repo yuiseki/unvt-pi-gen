@@ -17,9 +17,7 @@ clean-all:
 docker-setup:
 	curl -fsSL https://get.docker.com -o $(CURDIR)/tmp/get-docker.sh
 	sudo sh $(CURDIR)/tmp/get-docker.sh
-	sudo chmod 666 /var/run/docker.sock
-	sudo chgrp docker /var/run/docker.sock
-	sudo gpasswd -a pi docker
+	sudo usermod -aG docker $(whoami)
 
 .PHONY: docker-build
 docker-build:
