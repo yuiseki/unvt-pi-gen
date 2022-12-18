@@ -8,14 +8,4 @@ gpsd
 gpsd-clients
 gpsd-tools
 openjdk-18-jdk-headless
-libboost-dev
-libboost-filesystem-dev
-libboost-iostreams-dev
-libboost-program-options-dev
-libboost-system-dev
-liblua5.1-0-dev
-libprotobuf-dev
-libshp-dev
-protobuf-compiler
-rapidjson-dev
 
