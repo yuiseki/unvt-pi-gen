@@ -43,16 +43,16 @@ make unvt-pi-gen
 
 ### `pi-gen` Stage Overview
 
-  - **stage0** - Run the original pi-gen as-is
-  - **stage1** - Run the original pi-gen as-is
-  - **stage2** - Run the original pi-gen as-is
-  - **stage3** - **Skipped**
-  - **stage4** - **Skipped**
-  - **stage5** - **Skipped**
+  - **stage0** - Run the original `pi-gen` as-is.
+  - **stage1** - Run the original `pi-gen` as-is.
+  - **stage2** - Run the original `pi-gen` as-is.
+  - **stage3** - **Skipped.**
+  - **stage4** - **Skipped.**
+  - **stage5** - **Skipped.**
 
 ### `unvt-pi-gen` Stage Overview
 
-  - **stage100** - Install must essential dev deps packages and Setup the Docker.
-  - **stage101** - Install GIS related packages, Node.js and Setup Nginx.
-  - **stage102** - Install `unvt-pi-gen` itself.
-  - **stage999** - Not used.
+  - **stage100** - Essential step. Install must essential dev deps packages, setup the Docker and `unvt-pi-gen` itself.
+    This means you can take the next step as many times as you like by trial and error. 
+  - **stage101** - Customizing step. Install GIS related packages, Node.js and Setup Nginx.
+  - **stage999** - ***Not used.***
