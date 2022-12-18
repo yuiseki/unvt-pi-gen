@@ -7,10 +7,10 @@ targets = \
 all: $(targets)
 
 clean:
-	sudo rm -rf $(CURDIR)/tmp/deploy/*
 	sudo rm -rf $(CURDIR)/tmp/work/stage10*
 
 clean-all:
+	sudo rm -rf $(CURDIR)/tmp/deploy/*
 	sudo rm -rf $(CURDIR)/tmp/work/*
 
 .PHONY: docker-setup
