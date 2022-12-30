@@ -14,13 +14,23 @@
 
 ### MUST:
 
-- Raspberry Pi 4 Model B
-  - Raspberry Pi OS Lite (32-bit)
-- GNU Make
-- Docker
+- Linux OS
+  - Raspberry Pi 4 Model B
+    - Raspberry Pi OS Lite (32-bit)
+- Common requirements
+  - GNU Make
+  - Docker
+
+### GNU Make
 
 ```bash
 sudo apt install make
+```
+
+### QEMU
+
+```bash
+sudo apt install qemu binfmt-support qemu-user-static
 ```
 
 ### SHOULD:
@@ -69,16 +79,16 @@ sudo dd if=tmp/deploy/YYYY-mm-dd-IMG_NAME-custom.img of=/dev/sda bs=4M conv=fsyn
 
 ### `pi-gen` Stage Overview
 
-  - **stage0** - Run the original `pi-gen` as-is.
-  - **stage1** - Run the original `pi-gen` as-is.
-  - **stage2** - Run the original `pi-gen` as-is.
-  - **stage3** - **Skipped.**
-  - **stage4** - **Skipped.**
-  - **stage5** - **Skipped.**
+- **stage0** - Run the original `pi-gen` as-is.
+- **stage1** - Run the original `pi-gen` as-is.
+- **stage2** - Run the original `pi-gen` as-is.
+- **stage3** - **Skipped.**
+- **stage4** - **Skipped.**
+- **stage5** - **Skipped.**
 
 ### `unvt-pi-gen` Stage Overview
 
-  - **stage100** - Essential stage. Install must essential dev deps packages, setup the Docker and `unvt-pi-gen` itself.
-    This means you can take the next stage as many times as you like by trial and error. 
-  - **stage101** - Customizing stage. Install GIS related packages, Node.js and Setup Nginx.
-  - **stage999** - **Not used.**
+- **stage100** - Essential stage. Install must essential dev deps packages, setup the Docker and `unvt-pi-gen` itself.
+  This means you can take the next stage as many times as you like by trial and error.
+- **stage101** - Customizing stage. Install GIS related packages, Node.js and Setup Nginx.
+- **stage999** - **Not used.**

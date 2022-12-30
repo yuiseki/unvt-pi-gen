@@ -1,4 +1,4 @@
-FROM ubuntu:latest
+FROM arm64v8/ubuntu:latest
 
 ARG DEBIAN_FRONTEND=noninteractive
 
