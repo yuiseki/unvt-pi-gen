@@ -19,11 +19,14 @@ docker-setup:
 	sudo sh $(CURDIR)/tmp/get-docker.sh
 	sudo usermod -aG docker $(whoami)
 
+root.tar.xz:
+	curl -SL https://downloads.raspberrypi.org/raspios_lite_armhf/root.tar.xz -o root.tar.xz
+
 .PHONY: docker-build
-docker-build:
+docker-build: root.tar.xz
 	docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
 	docker image inspect sameersbn/apt-cacher-ng:latest > /dev/null || docker build -t sameersbn/apt-cacher-ng:latest github.com/sameersbn/docker-apt-cacher-ng
-	docker image inspect yuiseki/unvt-pi-gen:2022-06-16_bullseye > /dev/null || docker build . -t yuiseki/unvt-pi-gen:2022-06-16_bullseye
+	docker image inspect yuiseki/unvt-pi-gen-armhf:latest > /dev/null || docker build . -t yuiseki/unvt-pi-gen-armhf:latest
 
 # For skip...
 # touch ./stage0/SKIP ./stage1/SKIP ./stage2/SKIP &&
@@ -48,9 +51,9 @@ unvt-pi-gen:
 	-e CONTINUE=1 \
 	-e DEBIAN_FRONTEND=noninteractive \
 	-e STAGE_LIST="stage0 stage1 stage2 stage100 stage101" \
-	yuiseki/unvt-pi-gen:2022-06-16_bullseye \
+	yuiseki/unvt-pi-gen-armhf \
 		bash -c "\
 			touch ./stage2/SKIP_IMAGES &&\
-		 ./build.sh\
-		 "
+			./build.sh\
+		"
 	docker compose down

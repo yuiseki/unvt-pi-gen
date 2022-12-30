@@ -1,4 +1,5 @@
 .env
+root.tar.xz
 /tmp
 !/tmp/.gitkeep
 /apt-cacher-ng

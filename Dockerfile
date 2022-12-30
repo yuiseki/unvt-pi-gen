@@ -1,8 +1,11 @@
-FROM pinto0309/raspios_lite_armhf:2022-06-16_bullseye
+FROM scratch
+
+ADD root.tar.xz .
 
 ARG DEBIAN_FRONTEND=noninteractive
 
-RUN apt-get update && apt-get -y upgrade
+#RUN apt-get update && apt-get -y upgrade
+RUN apt-get update
 
 RUN apt-get -y install \
   coreutils \
