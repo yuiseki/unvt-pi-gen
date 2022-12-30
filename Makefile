@@ -21,6 +21,7 @@ docker-setup:
 
 .PHONY: docker-build
 docker-build:
+	docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
 	docker image inspect sameersbn/apt-cacher-ng:latest > /dev/null || docker build -t sameersbn/apt-cacher-ng:latest github.com/sameersbn/docker-apt-cacher-ng
 	docker image inspect yuiseki/unvt-pi-gen:2022-06-16_bullseye > /dev/null || docker build . -t yuiseki/unvt-pi-gen:2022-06-16_bullseye
 
