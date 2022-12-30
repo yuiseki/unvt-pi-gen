@@ -4,6 +4,7 @@ services:
   apt-cacher-ng:
     restart: unless-stopped
     image: sameersbn/apt-cacher-ng:latest
+    hostname: apt-cacher-ng
     ports:
       - "3142:3142"
     volumes:
