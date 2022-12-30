@@ -1,10 +1,10 @@
-FROM arm64v8/ubuntu:latest
+FROM pinto0309/raspios_lite_armhf:2022-06-16_bullseye
 
 ARG DEBIAN_FRONTEND=noninteractive
 
-RUN apt-get update && \
-  apt-get -y upgrade && \
-  apt-get -y install \
+RUN apt-get update && apt-get -y upgrade
+
+RUN apt-get -y install \
   coreutils \
   sudo \
   curl \
