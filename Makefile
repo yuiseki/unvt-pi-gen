@@ -30,6 +30,15 @@ docker-build: root.tar.xz
 
 # For skip...
 # touch ./stage0/SKIP ./stage1/SKIP ./stage2/SKIP &&
+#		bash -c "\
+#			touch ./stage0/SKIP &&\
+#			touch ./stage1/SKIP &&\
+#			touch ./stage2/SKIP &&\
+#			touch ./stage0/SKIP_IMAGES &&\
+#			touch ./stage1/SKIP_IMAGES &&\
+#			touch ./stage2/SKIP_IMAGES &&\
+#			./build.sh\
+#		"
 .PHONY: unvt-pi-gen
 unvt-pi-gen:
 	docker compose up -d
@@ -53,7 +62,6 @@ unvt-pi-gen:
 	-e STAGE_LIST="stage0 stage1 stage2 stage100 stage101" \
 	yuiseki/unvt-pi-gen-armhf \
 		bash -c "\
-			touch ./stage2/SKIP_IMAGES &&\
 			./build.sh\
 		"
 	docker compose down
