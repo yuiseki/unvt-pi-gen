@@ -1,7 +1,8 @@
 gdal-bin
+osm2pgsql
 osmosis
 osmium-tool
-osm2pgsql
+osmctools
 postgresql-client
 pdal
 gpsd
