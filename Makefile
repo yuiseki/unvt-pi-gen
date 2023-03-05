@@ -62,9 +62,6 @@ unvt-pi-gen:
 	-e STAGE_LIST="stage0 stage1 stage2 stage100 stage101" \
 	yuiseki/unvt-pi-gen-armhf \
 		bash -c "\
-			touch ./stage0/SKIP &&\
-			touch ./stage1/SKIP &&\
-			touch ./stage2/SKIP &&\
 			./build.sh\
 		"
 	docker compose down
