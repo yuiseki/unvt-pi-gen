@@ -59,10 +59,17 @@ vim .env
 make docker-setup
 ```
 
-### 4. Build Raspbery Pi OS
+### 4. Build Raspberry Pi OS
 
 ```bash
 make
+```
+
+NOTE: When Rebuild the OS image, run following commands:
+
+```bash
+make clean
+make clean-all
 ```
 
 ### 5. Write to microSD Card
