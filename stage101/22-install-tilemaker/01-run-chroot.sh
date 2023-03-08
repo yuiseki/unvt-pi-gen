@@ -6,5 +6,5 @@ if [ ! -d ${ROOTFS_DIR}/home/${FIRST_USER_NAME}/src/tilemaker ]; then
   cd ${ROOTFS_DIR}/home/${FIRST_USER_NAME}/src
   git clone --depth 1 https://github.com/systemed/tilemaker.git
   cd ${ROOTFS_DIR}/home/${FIRST_USER_NAME}/src/tilemaker
-  make -j; make install
+  make -j LDFLAGS="-latomic"; make install
 fi
