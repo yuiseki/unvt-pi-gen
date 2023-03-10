@@ -29,11 +29,7 @@ docker-build: root.tar.xz
 	docker image inspect yuiseki/unvt-pi-gen-armhf:latest > /dev/null || docker build . -t yuiseki/unvt-pi-gen-armhf:latest
 
 # For skip...
-# touch ./stage0/SKIP ./stage1/SKIP ./stage2/SKIP &&
 #		bash -c "\
-#			touch ./stage0/SKIP &&\
-#			touch ./stage1/SKIP &&\
-#			touch ./stage2/SKIP &&\
 #			touch ./stage0/SKIP_IMAGES &&\
 #			touch ./stage1/SKIP_IMAGES &&\
 #			touch ./stage2/SKIP_IMAGES &&\
