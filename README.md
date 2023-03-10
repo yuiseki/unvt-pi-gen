@@ -15,6 +15,8 @@
 ### MUST:
 
 - Linux OS
+  - WSL2
+  - Ubuntu
   - Raspberry Pi 4 Model B
     - Raspberry Pi OS Lite (32-bit)
 - Common requirements
