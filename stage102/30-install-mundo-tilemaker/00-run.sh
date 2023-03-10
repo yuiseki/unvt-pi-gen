@@ -7,6 +7,13 @@ EOF
 mkdir -p /tmp/osm
 mkdir -p ${ROOTFS_DIR}/home/${FIRST_USER_NAME}/src
 
+if type "tilemaker" > /dev/null 2>&1; then
+    echo "tilemaker exist!"
+else
+    echo "tilemaker NOT exist!"
+    exit 1
+fi
+
 if [ ! -d ${ROOTFS_DIR}/home/${FIRST_USER_NAME}/src/mundo-tilemaker ]; then
   cd ${ROOTFS_DIR}/home/${FIRST_USER_NAME}/src
   git clone --depth 1 https://github.com/yuiseki/mundo-tilemaker.git
