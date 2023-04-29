@@ -1,17 +1,7 @@
 #!/bin/bash -e
 
-on_chroot << EOF
-	SUDO_USER="${FIRST_USER_NAME}" DEBIAN_FRONTEND=noninteractive apt-get install osmctools
-EOF
-
-mkdir -p /tmp/osm
-mkdir -p /home/${FIRST_USER_NAME}/src
-
-echo $PATH
-
 ls -alh /usr/local/bin
-
-ls -alh /usr/local/bin/tilemaker
+ls -alh /home/${FIRST_USER_NAME}/tmp
 
 if type "tilemaker" > /dev/null 2>&1; then
     echo "tilemaker exist!"
@@ -20,13 +10,14 @@ else
     exit 1
 fi
 
+mkdir -p /home/${FIRST_USER_NAME}/src
+
 cd /home/${FIRST_USER_NAME}/src
 git clone --depth 1 https://github.com/yuiseki/mundo-tilemaker.git
+cp tilemaker/config.json mundo-tilemaker
+cp tilemaker/process.lua mundo-tilemaker
 cd mundo-tilemaker
-mkdir -p tmp/osm
-cp -r /tmp/osm/* tmp/osm/
-rm -rf .env
+cp -r /home/${FIRST_USER_NAME}/tmp/* ./tmp
+
 cp .env.pi .env
 make
-cp -r tmp/osm/* /tmp/osm/
-
