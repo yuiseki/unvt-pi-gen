@@ -103,7 +103,6 @@ sudo dd if=tmp/deploy/YYYY-mm-dd-IMG_NAME-custom.img of=/dev/sda bs=4M conv=fsyn
 
 ### `unvt-pi-gen` Stage Overview
 
-- **stage100** - Essential stage. Install must essential dev deps packages, setup the Docker and `unvt-pi-gen` itself.
-  This means you can take the next stage as many times as you like by trial and error.
-- **stage101** - Docker stage. Install Docker for Raspberry Pi OS.
+- **stage100** - Essential stage. Install must essential dev deps packages.
+- **stage200** - Docker stage. Install Docker for Raspberry Pi OS.
 - **stage999** - **Not used.**
