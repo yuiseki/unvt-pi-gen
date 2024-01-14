@@ -59,16 +59,17 @@ unvt-pi-gen:
 	--mount type=bind,source=$(CURDIR)/stage101,target=/app/pi-gen/stage101 \
 	--net=unvt-pi-gen \
 	--env-file $(CURDIR)/.env \
-	-e APT_PROXY=http://172.17.0.1:3142 \
-	-e WORK_DIR=/tmp/work \
-	-e DEPLOY_DIR=/tmp/deploy \
+	--name unvt-pi-gen \
 	-e CONTINUE=1 \
 	-e DEBIAN_FRONTEND=noninteractive \
 	-e STAGE_LIST="stage0 stage1 stage2 stage100 stage101" \
 	yuiseki/unvt-pi-gen-arm64 bash -e -o pipefail -c "\
 		dpkg-reconfigure qemu-user-static &&\
 		(mount binfmt_misc -t binfmt_misc /proc/sys/fs/binfmt_misc || true) &&\
-		cd /app/pi-gen; ./build.sh\
+		touch ./stage0/SKIP_IMAGES &&\
+		touch ./stage1/SKIP_IMAGES &&\
+		touch ./stage2/SKIP_IMAGES &&\
+		./build.sh\
 	"
 #	yuiseki/unvt-pi-gen-arm64 \
 #		bash -c "\
@@ -81,3 +82,7 @@ unvt-pi-gen:
 #			./build.sh\
 #		"
 	docker compose down
+
+.PHONY: kill
+kill:
+	docker stop unvt-pi-gen
