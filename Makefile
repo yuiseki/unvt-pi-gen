@@ -24,18 +24,18 @@ docker-setup:
 	sudo sh $(CURDIR)/tmp/get-docker.sh
 	sudo usermod -aG docker $(whoami)
 
-root-armhf.tar.xz:
-	curl -SL https://downloads.raspberrypi.org/raspios_lite_armhf/root.tar.xz -o root-armhf.tar.xz
-
 root-arm64.tar.xz:
 	curl -SL https://downloads.raspberrypi.org/raspios_lite_arm64/root.tar.xz -o root-arm64.tar.xz
 
+root-armhf.tar.xz:
+	curl -SL https://downloads.raspberrypi.org/raspios_lite_armhf/root.tar.xz -o root-armhf.tar.xz
+
 .PHONY: docker-build
-docker-build: root-armhf.tar.xz root-arm64.tar.xz
+docker-build: root-arm64.tar.xz root-armhf.tar.xz
 	docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
 	docker image inspect sameersbn/apt-cacher-ng:latest > /dev/null || docker build -t sameersbn/apt-cacher-ng:latest github.com/sameersbn/docker-apt-cacher-ng
-	docker image inspect yuiseki/unvt-pi-gen-armhf:latest > /dev/null || docker build . -f Docker/Dockerfile.armhf -t yuiseki/unvt-pi-gen-armhf:latest
 	docker image inspect yuiseki/unvt-pi-gen-arm64:latest > /dev/null || docker build . -f Docker/Dockerfile.arm64 -t yuiseki/unvt-pi-gen-arm64:latest
+	docker image inspect yuiseki/unvt-pi-gen-armhf:latest > /dev/null || docker build . -f Docker/Dockerfile.armhf -t yuiseki/unvt-pi-gen-armhf:latest
 
 # For skip...
 #		bash -c "\
