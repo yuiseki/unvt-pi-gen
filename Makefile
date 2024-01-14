@@ -13,20 +13,29 @@ clean-all:
 	sudo rm -rf $(CURDIR)/tmp/deploy/*
 	sudo rm -rf $(CURDIR)/tmp/work/*
 
+clean-root:
+	rm root-armhf.tar.xz
+	rm root-arm64.tar.xz
+
 .PHONY: docker-setup
 docker-setup:
+	command -v docker
 	curl -fsSL https://get.docker.com -o $(CURDIR)/tmp/get-docker.sh
 	sudo sh $(CURDIR)/tmp/get-docker.sh
 	sudo usermod -aG docker $(whoami)
 
-root.tar.xz:
-	curl -SL https://downloads.raspberrypi.org/raspios_lite_armhf/root.tar.xz -o root.tar.xz
+root-armhf.tar.xz:
+	curl -SL https://downloads.raspberrypi.org/raspios_lite_armhf/root.tar.xz -o root-armhf.tar.xz
+
+root-arm64.tar.xz:
+	curl -SL https://downloads.raspberrypi.org/raspios_lite_arm64/root.tar.xz -o root-arm64.tar.xz
 
 .PHONY: docker-build
-docker-build: root.tar.xz
+docker-build: root-armhf.tar.xz root-arm64.tar.xz
 	docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
 	docker image inspect sameersbn/apt-cacher-ng:latest > /dev/null || docker build -t sameersbn/apt-cacher-ng:latest github.com/sameersbn/docker-apt-cacher-ng
-	docker image inspect yuiseki/unvt-pi-gen-armhf:latest > /dev/null || docker build . -t yuiseki/unvt-pi-gen-armhf:latest
+	docker image inspect yuiseki/unvt-pi-gen-armhf:latest > /dev/null || docker build . -f Docker/Dockerfile.armhf -t yuiseki/unvt-pi-gen-armhf:latest
+	docker image inspect yuiseki/unvt-pi-gen-arm64:latest > /dev/null || docker build . -f Docker/Dockerfile.arm64 -t yuiseki/unvt-pi-gen-arm64:latest
 
 # For skip...
 #		bash -c "\
@@ -37,6 +46,7 @@ docker-build: root.tar.xz
 #		"
 .PHONY: unvt-pi-gen
 unvt-pi-gen:
+	sudo update-binfmts --enable > /dev/null
 	docker compose up -d
 	docker run \
 	-i \
@@ -48,7 +58,6 @@ unvt-pi-gen:
 	--mount type=bind,source=$(CURDIR)/tmp,target=/tmp \
 	--mount type=bind,source=$(CURDIR)/stage100,target=/app/pi-gen/stage100 \
 	--mount type=bind,source=$(CURDIR)/stage101,target=/app/pi-gen/stage101 \
-	--mount type=bind,source=$(CURDIR)/stage102,target=/app/pi-gen/stage102 \
 	--net=unvt-pi-gen \
 	--env-file $(CURDIR)/.env \
 	-e APT_PROXY=http://172.17.0.1:3142 \
@@ -56,15 +65,16 @@ unvt-pi-gen:
 	-e DEPLOY_DIR=/tmp/deploy \
 	-e CONTINUE=1 \
 	-e DEBIAN_FRONTEND=noninteractive \
-	-e STAGE_LIST="stage0 stage1 stage2 stage100 stage101 stage102" \
-	yuiseki/unvt-pi-gen-armhf \
-		bash -c "\
-			touch ./stage0/SKIP_IMAGES &&\
-			touch ./stage1/SKIP_IMAGES &&\
-			touch ./stage2/SKIP_IMAGES &&\
-			touch ./stage0/SKIP &&\
-			touch ./stage1/SKIP &&\
-			touch ./stage2/SKIP &&\
-			./build.sh\
-		"
+	-e STAGE_LIST="stage0 stage1 stage2 stage100 stage101" \
+	yuiseki/unvt-pi-gen-arm64 ./build.sh
+#	yuiseki/unvt-pi-gen-arm64 \
+#		bash -c "\
+#			touch ./stage0/SKIP_IMAGES &&\
+#			touch ./stage1/SKIP_IMAGES &&\
+#			touch ./stage2/SKIP_IMAGES &&\
+#			touch ./stage0/SKIP &&\
+#			touch ./stage1/SKIP &&\
+#			touch ./stage2/SKIP &&\
+#			./build.sh\
+#		"
 	docker compose down

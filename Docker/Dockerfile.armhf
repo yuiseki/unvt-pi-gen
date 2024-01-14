@@ -1,11 +1,8 @@
-FROM scratch
-
-ADD root.tar.xz .
+FROM ubuntu:22.04
 
 ARG DEBIAN_FRONTEND=noninteractive
 
-#RUN apt-get update && apt-get -y upgrade
-RUN apt-get update
+RUN apt-get update -y
 
 RUN apt-get -y install \
   coreutils \
@@ -45,6 +42,7 @@ RUN apt-get -y install \
 
 RUN apt-get -y install clang
 
+ADD root-armhf.tar.xz root.tar.xz
 
 WORKDIR /app
 

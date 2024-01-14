@@ -18,7 +18,7 @@
   - WSL2
   - Ubuntu
   - Raspberry Pi 4 Model B
-    - Raspberry Pi OS Lite (32-bit)
+    - Raspberry Pi OS Lite (64-bit)
 - Common requirements
   - GNU Make
   - Docker
@@ -61,7 +61,13 @@ vim .env
 make docker-setup
 ```
 
-### 4. Build Raspberry Pi OS
+### 4. Build docker image for pi-gen
+
+```bash
+make docker-build
+```
+
+### 5. Build Raspberry Pi OS
 
 ```bash
 make
@@ -74,7 +80,7 @@ make clean
 make clean-all
 ```
 
-### 5. Write to microSD Card
+### 6. Write to microSD Card
 
 ```bash
 df -h
@@ -99,5 +105,5 @@ sudo dd if=tmp/deploy/YYYY-mm-dd-IMG_NAME-custom.img of=/dev/sda bs=4M conv=fsyn
 
 - **stage100** - Essential stage. Install must essential dev deps packages, setup the Docker and `unvt-pi-gen` itself.
   This means you can take the next stage as many times as you like by trial and error.
-- **stage101** - Customizing stage. Install GIS related packages, Node.js and Setup Nginx.
+- **stage101** - Docker stage. Install Docker for Raspberry Pi OS.
 - **stage999** - **Not used.**
