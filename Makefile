@@ -69,6 +69,9 @@ unvt-pi-gen:
 		touch ./stage0/SKIP_IMAGES &&\
 		touch ./stage1/SKIP_IMAGES &&\
 		touch ./stage2/SKIP_IMAGES &&\
+		touch ./stage0/SKIP &&\
+		touch ./stage1/SKIP &&\
+		touch ./stage2/SKIP &&\
 		./build.sh\
 	"
 #	yuiseki/unvt-pi-gen-arm64 \
