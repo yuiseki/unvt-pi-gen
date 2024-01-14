@@ -2,13 +2,20 @@ version: "3"
 
 services:
   apt-cacher-ng:
-    restart: unless-stopped
     image: sameersbn/apt-cacher-ng:latest
+    container_name: apt-cacher-ng
     hostname: apt-cacher-ng
+    restart: always
+    entrypoint:
+      - /bin/sh
+      - -c
+    command:
+      - /etc/init.d/apt-cacher-ng start && tail -f /var/log/apt-cacher-ng/*
     ports:
       - "0.0.0.0:3142:3142"
     volumes:
       - ./apt-cacher-ng:/var/cache/apt-cacher-ng
+      - ./acng.conf:/etc/apt-cacher-ng/acng.conf
     networks:
       - unvt-pi-gen
 
