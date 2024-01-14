@@ -46,7 +46,6 @@ docker-build: root-arm64.tar.xz root-armhf.tar.xz
 #		"
 .PHONY: unvt-pi-gen
 unvt-pi-gen:
-	sudo update-binfmts --enable > /dev/null
 	docker compose up -d
 	docker run \
 	-i \
@@ -66,7 +65,11 @@ unvt-pi-gen:
 	-e CONTINUE=1 \
 	-e DEBIAN_FRONTEND=noninteractive \
 	-e STAGE_LIST="stage0 stage1 stage2 stage100 stage101" \
-	yuiseki/unvt-pi-gen-arm64 ./build.sh
+	yuiseki/unvt-pi-gen-arm64 bash -e -o pipefail -c "\
+		dpkg-reconfigure qemu-user-static &&\
+		(mount binfmt_misc -t binfmt_misc /proc/sys/fs/binfmt_misc || true) &&\
+		cd /app/pi-gen; ./build.sh\
+	"
 #	yuiseki/unvt-pi-gen-arm64 \
 #		bash -c "\
 #			touch ./stage0/SKIP_IMAGES &&\
