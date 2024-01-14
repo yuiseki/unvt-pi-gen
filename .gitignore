@@ -1,7 +1,10 @@
 .env
-root.tar.xz
-/tmp
+root-armhf.tar.xz
+root-arm64.tar.xz
+
+/tmp/*
 !/tmp/.gitkeep
-/apt-cacher-ng
+
+/apt-cacher-ng/*
 !/apt-cacher-ng/.gitkeep
 
