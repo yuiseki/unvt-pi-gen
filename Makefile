@@ -7,9 +7,12 @@ targets = \
 all: $(targets)
 
 clean:
-	sudo rm -rf $(CURDIR)/tmp/work/stage10*
+	sudo rm -rf $(CURDIR)/tmp/work/stage30*
 
 clean-all:
+	sudo rm -rf $(CURDIR)/tmp/work/stage10*
+	sudo rm -rf $(CURDIR)/tmp/work/stage20*
+	sudo rm -rf $(CURDIR)/tmp/work/stage30*
 	sudo rm -rf $(CURDIR)/tmp/deploy/*
 	sudo rm -rf $(CURDIR)/tmp/work/*
 
@@ -50,34 +53,36 @@ unvt-pi-gen:
 	--mount type=bind,source=$(CURDIR)/tmp,target=/tmp \
 	--mount type=bind,source=$(CURDIR)/stage100,target=/app/pi-gen/stage100 \
 	--mount type=bind,source=$(CURDIR)/stage200,target=/app/pi-gen/stage200 \
+	--mount type=bind,source=$(CURDIR)/stage300,target=/app/pi-gen/stage300 \
 	--net=unvt-pi-gen \
 	--env-file $(CURDIR)/.env \
 	--name unvt-pi-gen \
 	-e CONTINUE=1 \
 	-e DEBIAN_FRONTEND=noninteractive \
-	-e STAGE_LIST="stage0 stage1 stage2 stage100 stage200" \
+	-e STAGE_LIST="stage0 stage1 stage2 stage100 stage200 stage300" \
 	yuiseki/unvt-pi-gen-arm64 bash -e -o pipefail -c "\
 		dpkg-reconfigure qemu-user-static &&\
 		(mount binfmt_misc -t binfmt_misc /proc/sys/fs/binfmt_misc || true) &&\
-		touch ./stage0/SKIP_IMAGES &&\
-		touch ./stage1/SKIP_IMAGES &&\
-		touch ./stage2/SKIP_IMAGES &&\
-		touch ./stage0/SKIP &&\
-		touch ./stage1/SKIP &&\
-		touch ./stage2/SKIP &&\
-		touch ./stage100/SKIP &&\
+			touch ./stage0/SKIP &&\
+			touch ./stage0/SKIP_IMAGES &&\
+			touch ./stage1/SKIP &&\
+			touch ./stage1/SKIP_IMAGES &&\
+			touch ./stage2/SKIP &&\
+			touch ./stage2/SKIP_IMAGES &&\
 		./build.sh\
 	"
 #	yuiseki/unvt-pi-gen-arm64 bash -e -o pipefail -c "\
 #			dpkg-reconfigure qemu-user-static &&\
 #			(mount binfmt_misc -t binfmt_misc /proc/sys/fs/binfmt_misc || true) &&\
-#			touch ./stage0/SKIP_IMAGES &&\
-#			touch ./stage1/SKIP_IMAGES &&\
-#			touch ./stage2/SKIP_IMAGES &&\
 #			touch ./stage0/SKIP &&\
+#			touch ./stage0/SKIP_IMAGES &&\
 #			touch ./stage1/SKIP &&\
+#			touch ./stage1/SKIP_IMAGES &&\
 #			touch ./stage2/SKIP &&\
+#			touch ./stage2/SKIP_IMAGES &&\
 #			touch ./stage100/SKIP &&\
+#			touch ./stage200/SKIP &&\
+#			touch ./stage200/SKIP_IMAGES &&\
 #			./build.sh\
 #		"
 	docker compose down
