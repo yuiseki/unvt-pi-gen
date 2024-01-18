@@ -84,6 +84,7 @@ make clean-all
 
 ```bash
 df -h
+ls -alh /dev | grep sd
 sudo umount /dev/sda1
 sudo umount /dev/sda2
 df -h
