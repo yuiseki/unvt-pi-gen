@@ -7,6 +7,7 @@ targets = \
 all: $(targets)
 
 clean:
+	sudo rm -rf $(CURDIR)/tmp/deploy/*
 	sudo rm -rf $(CURDIR)/tmp/work/stage10*
 	sudo rm -rf $(CURDIR)/tmp/work/stage20*
 	sudo rm -rf $(CURDIR)/tmp/work/stage30*
@@ -15,7 +16,6 @@ clean-all:
 	sudo rm -rf $(CURDIR)/tmp/work/stage10*
 	sudo rm -rf $(CURDIR)/tmp/work/stage20*
 	sudo rm -rf $(CURDIR)/tmp/work/stage30*
-	sudo rm -rf $(CURDIR)/tmp/deploy/*
 	sudo rm -rf $(CURDIR)/tmp/work/*
 
 clean-root:
