@@ -37,10 +37,9 @@ root-armhf.tar.xz:
 
 .PHONY: docker-build
 docker-build: root-arm64.tar.xz root-armhf.tar.xz
-	docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
 	docker image inspect sameersbn/apt-cacher-ng:latest > /dev/null || docker build -t sameersbn/apt-cacher-ng:latest github.com/sameersbn/docker-apt-cacher-ng
 	docker image inspect yuiseki/unvt-pi-gen-arm64:latest > /dev/null || docker build . -f Docker/Dockerfile.arm64 -t yuiseki/unvt-pi-gen-arm64:latest
-	docker image inspect yuiseki/unvt-pi-gen-armhf:latest > /dev/null || docker build . -f Docker/Dockerfile.armhf -t yuiseki/unvt-pi-gen-armhf:latest
+#	docker image inspect yuiseki/unvt-pi-gen-armhf:latest > /dev/null || docker build . -f Docker/Dockerfile.armhf -t yuiseki/unvt-pi-gen-armhf:latest
 
 .PHONY: unvt-pi-gen
 unvt-pi-gen:
@@ -68,9 +67,6 @@ unvt-pi-gen:
 			touch ./stage0/SKIP_IMAGES &&\
 			touch ./stage1/SKIP_IMAGES &&\
 			touch ./stage2/SKIP_IMAGES &&\
-			touch ./stage0/SKIP &&\
-			touch ./stage1/SKIP &&\
-			touch ./stage2/SKIP &&\
 		./build.sh\
 	"
 #	yuiseki/unvt-pi-gen-arm64 bash -e -o pipefail -c "\
