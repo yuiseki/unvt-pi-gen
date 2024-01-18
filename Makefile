@@ -7,6 +7,8 @@ targets = \
 all: $(targets)
 
 clean:
+	sudo rm -rf $(CURDIR)/tmp/work/stage10*
+	sudo rm -rf $(CURDIR)/tmp/work/stage20*
 	sudo rm -rf $(CURDIR)/tmp/work/stage30*
 
 clean-all:
@@ -66,17 +68,20 @@ unvt-pi-gen:
 			touch ./stage0/SKIP_IMAGES &&\
 			touch ./stage1/SKIP_IMAGES &&\
 			touch ./stage2/SKIP_IMAGES &&\
+			touch ./stage0/SKIP &&\
+			touch ./stage1/SKIP &&\
+			touch ./stage2/SKIP &&\
 		./build.sh\
 	"
 #	yuiseki/unvt-pi-gen-arm64 bash -e -o pipefail -c "\
 #			dpkg-reconfigure qemu-user-static &&\
 #			(mount binfmt_misc -t binfmt_misc /proc/sys/fs/binfmt_misc || true) &&\
-#			touch ./stage0/SKIP &&\
 #			touch ./stage0/SKIP_IMAGES &&\
-#			touch ./stage1/SKIP &&\
 #			touch ./stage1/SKIP_IMAGES &&\
-#			touch ./stage2/SKIP &&\
 #			touch ./stage2/SKIP_IMAGES &&\
+#			touch ./stage0/SKIP &&\
+#			touch ./stage1/SKIP &&\
+#			touch ./stage2/SKIP &&\
 #			touch ./stage100/SKIP &&\
 #			touch ./stage200/SKIP &&\
 #			./build.sh\
