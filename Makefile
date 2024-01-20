@@ -33,10 +33,12 @@ root-armhf.tar.xz:
 	curl -SL https://downloads.raspberrypi.org/raspios_lite_armhf/root.tar.xz -o root-armhf.tar.xz
 
 .PHONY: docker-build
-docker-build: root-arm64.tar.xz root-armhf.tar.xz
+docker-build: root-arm64.tar.xz
 	docker image inspect sameersbn/apt-cacher-ng:latest > /dev/null || docker build -t sameersbn/apt-cacher-ng:latest github.com/sameersbn/docker-apt-cacher-ng
 	docker image inspect yuiseki/unvt-pi-gen-arm64:latest > /dev/null || docker build . -f Docker/Dockerfile.arm64 -t yuiseki/unvt-pi-gen-arm64:latest
-#	docker image inspect yuiseki/unvt-pi-gen-armhf:latest > /dev/null || docker build . -f Docker/Dockerfile.armhf -t yuiseki/unvt-pi-gen-armhf:latest
+
+docker-build-32: root-armhf.tar.xz
+	docker image inspect yuiseki/unvt-pi-gen-armhf:latest > /dev/null || docker build . -f Docker/Dockerfile.armhf -t yuiseki/unvt-pi-gen-armhf:latest
 
 .PHONY: unvt-pi-gen
 unvt-pi-gen:
