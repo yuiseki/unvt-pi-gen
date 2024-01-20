@@ -42,7 +42,7 @@ docker-build-32: root-armhf.tar.xz
 
 .PHONY: unvt-pi-gen
 unvt-pi-gen:
-	chmod -R 777 $(CURDIR)/apt-cacher-ng/
+	sudo chmod -R 777 $(CURDIR)/apt-cacher-ng/
 	docker compose up -d
 	docker run \
 	-i \
